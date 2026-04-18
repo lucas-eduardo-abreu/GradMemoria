@@ -1,111 +1,125 @@
-# ✦ GradMemoria
+# GradMemoria
 
-Site memorial para a formatura em Direito pela Universidade de Caxias do Sul (UCS), 2026.
+Site memorial para a formatura em Direito de Micaelle Menezes Moreira pela Universidade de Caxias do Sul — UCS, turma 2026.
+
+Permite gerenciar textos, eventos, galeria de fotos e receber fotos enviadas por convidados, tudo via painel administrativo.
 
 ---
 
-## Estrutura do Projeto
+## Tecnologias
+
+| Camada | Tecnologia |
+|---|---|
+| Framework | Django 5.1 |
+| Admin | Django Jazzmin 3.0 |
+| Estáticos | WhiteNoise |
+| Banco (dev) | SQLite |
+| Banco (prod) | PostgreSQL |
+| Servidor WSGI | Gunicorn |
+| Hospedagem | Render |
+
+---
+
+## Estrutura
 
 ```
-formatura_micaelle/
-├── formatura/          # Configurações Django
+GradMemoria/
+├── formatura/               # Configurações do projeto Django
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
-├── core/               # App principal
-│   ├── models.py       # TextoSite, Evento, FotoGaleria, FotoConvidado
-│   ├── admin.py        # Painel admin customizado (Jazzmin)
-│   ├── views.py        # Home + API de envio de fotos
+├── formatura/core/          # App principal
+│   ├── models.py
+│   ├── admin.py
+│   ├── views.py
 │   ├── urls.py
 │   └── templates/core/home.html
 ├── static/
-│   └── css/admin_custom.css   # Tema dourado/bordô no admin
-├── seed.py             # Popula dados iniciais
-├── render.yaml         # Deploy no Render
+│   └── css/admin_custom.css
+├── manage.py
+├── seed.py
+├── render.yaml
 ├── requirements.txt
 └── .env.example
 ```
 
 ---
 
-## Rodar Localmente
+## Rodando localmente
 
 ```bash
-# 1. Clone e entre na pasta
-cd formatura_micaelle
+# 1. Clone o repositório
+git clone <url-do-repositorio>
+cd GradMemoria
 
-# 2. Crie o ambiente virtual
-python -m venv venv
-source venv/bin/activate      # Linux/Mac
-venv\Scripts\activate         # Windows
+# 2. Crie e ative o ambiente virtual
+python -m venv .venv
+source .venv/bin/activate      # Linux/macOS
+.venv\Scripts\activate         # Windows
 
 # 3. Instale as dependências
 pip install -r requirements.txt
 
-# 4. Configure o .env
+# 4. Configure as variáveis de ambiente
 cp .env.example .env
-# Edite o .env com: SECRET_KEY=qualquer-string-longa, DEBUG=True
+# Edite o .env: defina SECRET_KEY e DEBUG=True
 
-# 5. Crie o banco e popule dados iniciais
+# 5. Aplique as migrations e popule os dados iniciais
 python manage.py migrate
 python seed.py
 
-# 6. Crie o superusuário (login do admin)
+# 6. Crie o superusuário para acessar o admin
 python manage.py createsuperuser
 
-# 7. Rode o servidor
+# 7. Inicie o servidor
 python manage.py runserver
 ```
 
-Acesse:
-- Site: http://localhost:8000/
-- Admin: http://localhost:8000/admin/
+| URL | Descrição |
+|---|---|
+| http://localhost:8000/ | Site público |
+| http://localhost:8000/admin/ | Painel administrativo |
 
 ---
 
 ## Deploy no Render
 
 1. Faça push do projeto para um repositório GitHub
-2. No Render, clique em **New > Blueprint**
-3. Conecte o repositório — o `render.yaml` configura tudo automaticamente
-4. Após o deploy, acesse `/admin` e crie o superusuário via **Shell** do Render:
+2. No Render, acesse **New → Blueprint** e conecte o repositório
+3. O `render.yaml` configura automaticamente o serviço web e o banco PostgreSQL
+4. Após o primeiro deploy, crie o superusuário via **Shell** do Render:
    ```bash
    python manage.py createsuperuser
    ```
 
+O build executa automaticamente `collectstatic`, `migrate` e `seed.py`.
+
 ---
 
-## O que a Micaelle pode editar no Admin (/admin)
+## Painel administrativo
 
-| Seção | O que editar |
+| Seção | Função |
 |---|---|
-| **Textos do site** | Todos os textos: história, agradecimentos, descrições |
-| **Eventos** | Data, horário, endereço e link do mapa de cada evento |
-| **Fotos da galeria** | Adicionar, remover, reordenar fotos. Marcar como destaque |
-| **Fotos de convidados** | Ver fotos enviadas e aprovar/rejeitar antes de publicar |
+| **Foto da formanda** | Foto principal exibida no hero do site |
+| **Textos do site** | Todos os textos editáveis: história, agradecimentos, descrições |
+| **Eventos** | Data, horário, local e link do mapa de cada evento |
+| **Fotos da galeria** | Adicionar, remover e reordenar fotos; marcar destaque |
+| **Fotos de convidados** | Moderar fotos enviadas pelos convidados antes de publicar |
 
-### Fluxo das fotos de convidados:
+**Fluxo de moderação de fotos:**
+
 1. Convidado envia foto pelo site
-2. Micaelle recebe no admin em **"Fotos enviadas por convidados"** com status **⏳ Pendente**
-3. Ela visualiza a foto e clica para **aprovar**
-4. A foto aparece automaticamente na galeria do site ✅
+2. A foto aparece no admin com status **Pendente**
+3. Após aprovação, é publicada automaticamente na galeria
 
 ---
 
-## Modelos do banco de dados
+## Modelos
 
-- **TextoSite** — textos editáveis por seção (história, agradecimentos, etc.)
-- **Evento** — missa, colação e almoço com data/horário/endereço
-- **FotoGaleria** — fotos da Micaelle na galeria principal (com ordem e destaque)
-- **FotoConvidado** — fotos enviadas por convidados (com moderação)
-
----
-
-## Tecnologias
-
-- Django 5.0
-- Django Jazzmin (admin customizado)
-- WhiteNoise (servir arquivos estáticos)
-- PostgreSQL (produção) / SQLite (desenvolvimento)
-- Gunicorn (servidor WSGI)
-- Render (hospedagem)
+| Modelo | Descrição |
+|---|---|
+| `FotoFormanda` | Foto principal da formanda (hero) |
+| `TextoSite` | Textos editáveis por seção |
+| `Evento` | Missa, colação e almoço — data, horário, endereço |
+| `FotoGaleria` | Fotos da galeria principal com ordem e destaque |
+| `FotoConvidado` | Fotos enviadas por convidados com moderação |
