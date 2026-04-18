@@ -1,0 +1,250 @@
+/* ── Fontes ──────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400;600&display=swap');
+
+/* ── Variáveis ───────────────────────────────────────────── */
+:root,
+[data-bs-theme="dark"] {
+  --gold: #C9A84C;
+  --gold-light: #E8D5A3;
+  --gold-dark: #8B6914;
+  --burgundy: #6B1A2A;
+  --burgundy-dark: #3D0A15;
+  --burgundy-mid: #8B2035;
+
+  /* Sobrescreve as variáveis do Bootstrap dark mode */
+  --bs-body-bg: #1a0a0f;
+  --bs-body-bg-rgb: 26, 10, 15;
+  --bs-body-color: #E8D5A3;
+  --bs-body-color-rgb: 232, 213, 163;
+  --bs-secondary-bg: #2a0d14;
+  --bs-tertiary-bg: #200b10;
+  --bs-emphasis-color: #E8D5A3;
+  --bs-border-color: rgba(201, 168, 76, 0.2);
+  --bs-border-color-translucent: rgba(201, 168, 76, 0.15);
+  --bs-card-bg: #2a0d14;
+  --bs-card-cap-bg: #8B2035;
+  --bs-table-bg: #2a0d14;
+  --bs-table-striped-bg: #230d13;
+  --bs-table-hover-bg: rgba(201, 168, 76, 0.08);
+  --bs-input-bg: #1a0a0f;
+  --bs-form-control-bg: #1a0a0f;
+  --bs-link-color: #C9A84C;
+  --bs-link-hover-color: #E8D5A3;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+.main-sidebar, .main-sidebar .sidebar {
+  background: var(--burgundy-dark) !important;
+}
+
+.sidebar-dark-warning .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-dark-warning .nav-sidebar > .nav-item > .nav-link:hover {
+  background: rgba(201, 168, 76, 0.15) !important;
+  color: var(--gold) !important;
+}
+
+.sidebar-dark-warning .nav-sidebar > .nav-item > .nav-link {
+  color: var(--gold-light) !important;
+}
+
+.sidebar-dark-warning .nav-sidebar .nav-treeview > .nav-item > .nav-link {
+  color: rgba(232, 213, 163, 0.75) !important;
+}
+
+.sidebar-dark-warning .nav-sidebar .nav-treeview > .nav-item > .nav-link.active,
+.sidebar-dark-warning .nav-sidebar .nav-treeview > .nav-item > .nav-link:hover {
+  color: var(--gold) !important;
+  background: rgba(201, 168, 76, 0.1) !important;
+}
+
+/* ── Brand / Logo ────────────────────────────────────────── */
+.brand-link {
+  background: var(--burgundy-mid) !important;
+  border-bottom: 1px solid var(--gold-dark) !important;
+  font-family: 'Cinzel', serif !important;
+  color: var(--gold-light) !important;
+  letter-spacing: 0.05em;
+}
+
+.brand-link:hover { color: var(--gold) !important; }
+
+/* ── Navbar top ──────────────────────────────────────────── */
+.main-header.navbar {
+  background: var(--burgundy-mid) !important;
+  border-bottom: 1px solid var(--gold-dark) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--gold-light) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--gold) !important;
+}
+
+/* ── Botões principais ───────────────────────────────────── */
+.btn-warning, .btn-primary {
+  background: var(--gold) !important;
+  border-color: var(--gold-dark) !important;
+  color: var(--burgundy-dark) !important;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.btn-warning:hover, .btn-primary:hover {
+  background: var(--gold-dark) !important;
+  color: #fff !important;
+}
+
+.btn-danger {
+  background: var(--burgundy-mid) !important;
+  border-color: var(--burgundy) !important;
+}
+
+/* ── Cards e content-wrapper ─────────────────────────────── */
+.content-wrapper {
+  background: #1a0a0f !important;
+}
+
+.card {
+  border: 1px solid rgba(201, 168, 76, 0.2) !important;
+  background: #2a0d14 !important;
+}
+
+.card-header {
+  background: var(--burgundy-mid) !important;
+  border-bottom: 1px solid var(--gold-dark) !important;
+  color: var(--gold-light) !important;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+/* ── Tabelas do list view ────────────────────────────────── */
+#result_list {
+  background: #2a0d14 !important;
+}
+
+#result_list thead th {
+  background: var(--burgundy) !important;
+  color: var(--gold-light) !important;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid var(--gold-dark) !important;
+}
+
+#result_list tbody tr:hover td {
+  background: rgba(201, 168, 76, 0.08) !important;
+}
+
+#result_list tbody tr td {
+  color: var(--gold-light) !important;
+  border-color: rgba(201, 168, 76, 0.1) !important;
+}
+
+/* ── Breadcrumb ──────────────────────────────────────────── */
+.breadcrumb {
+  background: transparent !important;
+}
+
+.breadcrumb-item a {
+  color: var(--gold) !important;
+}
+
+.breadcrumb-item.active {
+  color: var(--gold-light) !important;
+}
+
+/* ── Welcome sign ────────────────────────────────────────── */
+.jumbotron {
+  background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy-mid)) !important;
+  border: 1px solid var(--gold-dark) !important;
+  color: var(--gold-light) !important;
+}
+
+/* ── Info boxes (dashboard) ──────────────────────────────── */
+.info-box {
+  background: #2a0d14 !important;
+  border: 1px solid rgba(201, 168, 76, 0.2) !important;
+}
+
+.info-box-icon {
+  background: var(--burgundy-mid) !important;
+  color: var(--gold) !important;
+}
+
+.info-box-text, .info-box-number {
+  color: var(--gold-light) !important;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.main-footer {
+  background: var(--burgundy-dark) !important;
+  color: var(--gold-dark) !important;
+  border-top: 1px solid var(--gold-dark) !important;
+  font-size: 11px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+/* ── Formulários ─────────────────────────────────────────── */
+.form-control {
+  background: #1a0a0f !important;
+  border-color: rgba(201, 168, 76, 0.3) !important;
+  color: var(--gold-light) !important;
+}
+
+.form-control:focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.2) !important;
+}
+
+label {
+  color: var(--gold-light) !important;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+fieldset legend, .fieldset-title {
+  color: var(--gold) !important;
+  font-family: 'Cinzel', serif;
+  border-bottom: 1px solid var(--gold-dark);
+  font-size: 14px;
+}
+
+/* ── Select ──────────────────────────────────────────────── */
+select.form-control {
+  color: var(--gold-light) !important;
+}
+
+select.form-control option {
+  background: var(--burgundy-dark);
+  color: var(--gold-light);
+}
+
+/* ── Paginação ───────────────────────────────────────────── */
+.pagination .page-item.active .page-link {
+  background: var(--gold) !important;
+  border-color: var(--gold-dark) !important;
+  color: var(--burgundy-dark) !important;
+}
+
+.pagination .page-link {
+  background: #2a0d14 !important;
+  border-color: rgba(201, 168, 76, 0.2) !important;
+  color: var(--gold-light) !important;
+}
+
+/* ── Mensagens de sucesso ────────────────────────────────── */
+.alert-success {
+  background: rgba(201, 168, 76, 0.15) !important;
+  border-color: var(--gold-dark) !important;
+  color: var(--gold-light) !important;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--burgundy-dark); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
